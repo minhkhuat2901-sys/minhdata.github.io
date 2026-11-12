@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Khuất Đình Minh - Data Analyst Portfolio. SQL Server, Power BI, DAX, Python.">
+  <title>Khuất Đình Minh | Data Analyst Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f9f4;
+      --white: #ffffff;
+      --dark: #203b2c;
+      --green: #356d4e;
+      --green-hover: #245239;
+      --muted: #697d6f;
+      --light: #eaf3e6;
+      --border: #dfe9dd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--dark);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.3;
+      letter-spacing: -0.04em;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,249,244,0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* BUTTONS */
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: var(--green-hover);
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--green);
+    }
+
+    .button-outline:hover {
+      background: var(--light);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 115px 0 105px;
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          #e2efd8,
+          transparent 45%
+        );
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      margin: 15px 0;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 590px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(35,80,45,0.08);
+    }
+
+    .hero-card .small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero-card .big {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--green);
+      margin: 10px 0;
+    }
+
+    .chart {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      height: 130px;
+      margin-top: 25px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bar {
+      flex: 1;
+      background: #b8d8b3;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .bar:nth-child(3n) {
+      background: var(--green);
+    }
+
+    /* STATS */
+
+    .stats {
+      background: var(--light);
+      padding: 30px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 29px;
+      color: var(--green);
+      font-family: "Manrope", sans-serif;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 43px);
+      margin: 12px 0 15px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 660px;
+      margin-bottom: 35px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 34px;
+    }
+
+    .about-text {
+      color: #536858;
+      font-size: 15px;
+    }
+
+    .about-text strong {
+      color: var(--dark);
+    }
+
+    .fact {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact:last-child {
+      border: none;
+      margin-bottom: 0;
+    }
+
+    .fact-label {
+      display: block;
+      font-size: 11px;
+      color: #869789;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .fact-value {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: 5px;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 20px;
+      transition: 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(35,80,45,0.07);
+    }
+
+    .skill-icon {
+      display: inline-flex;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      border-radius: 14px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .skill-card h3 {
+      margin: 18px 0 8px;
+      font-size: 19px;
+    }
+
+    .skill-card p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: #eff6ec;
+      color: var(--green);
+      padding: 5px 11px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* PROJECTS */
+
+    .projects-section {
+      background: #f0f5ed;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      margin-bottom: 28px;
+    }
+
+    .project-visual {
+      background: #deebd8;
+      padding: 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 520px;
+    }
+
+    .project-visual.coffee {
+      background: #e6edda;
+    }
+
+    .project-number {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    .project-visual h3 {
+      font-size: 38px;
+      color: var(--dark);
+    }
+
+    .project-visual p {
+      font-size: 14px;
+      color: #597360;
+    }
+
+    .project-body {
+      padding: 38px;
+    }
+
+    .project-type {
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 1px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .project-body h3 {
+      font-size: 26px;
+      margin: 12px 0;
+    }
+
+    .project-body p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .project-body ul {
+      padding-left: 20px;
+      color: #4c6253;
+      font-size: 13px;
+    }
+
+    .project-body li {
+      margin-bottom: 13px;
+    }
+
+    .project-body li strong {
+      color: var(--dark);
+    }
+
+    .project-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    /* WORKFLOW */
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 25px;
+    }
+
+    .workflow-item {
+      border-top: 2px solid #a8caa6;
+      padding-top: 20px;
+    }
+
+    .workflow-item span {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .workflow-item h3 {
+      font-size: 17px;
+    }
+
+    .workflow-item p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      padding: 60px 0 90px;
+    }
+
+    .contact-box {
+      background: #295b3f;
+      border-radius: 25px;
+      color: white;
+      padding: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .contact-box h2 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .contact-box p {
+      color: #d4e7d5;
+      font-size: 14px;
+    }
+
+    .contact-email {
+      color: white;
+      font-weight: 700;
+      text-decoration: underline;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-button {
+      background: white;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .contact-button:hover {
+      background: var(--light);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 900px) {
+      .hero-layout,
+      .about-grid,
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 420px;
+      }
+
+      .project-visual {
+        min-height: 250px;
+      }
+
+      .stats-grid,
+      .workflow {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media(max-width: 600px) {
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .skills-grid,
+      .stats-grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .skill-card,
+      .project-body {
+        padding: 24px;
+      }
+
+      .contact-box {
+        padding: 32px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-box h2 {
+        font-size: 28px;
+      }
+
+      .project-visual h3 {
+        font-size: 30px;
+      }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <nav class="container">
+      <a href="#" class="logo">MINH<span style="color:#91b895">.</span>DATA</a>
+
+      <div class="nav-links">
+        <a href="#about">Giới thiệu</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact" class="button">Liên hệ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="container hero-layout">
+
+        <div>
+          <div class="eyebrow">DATA ANALYST PORTFOLIO</div>
+
+          <h1>
+            Xin chào,<br>
+            mình là <span>Minh.</span>
+          </h1>
+
+          <p>
+            Mình là Khuất Đình Minh, định hướng phát triển
+            sự nghiệp trong lĩnh vực Data Analytics.
+            Mình yêu thích việc biến dữ liệu thành những
+            insight có giá trị, giúp doanh nghiệp hiểu rõ
+            vấn đề và đưa ra quyết định hiệu quả hơn.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="button">
+              Khám phá dự án ↗
+            </a>
+
+            <a href="#about" class="button button-outline">
+              Tìm hiểu về mình
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="small">DATA ANALYTICS</div>
+          <div class="big">Insights.</div>
+          <div class="small">
+            From data to better decisions
+          </div>
+
+          <div class="chart">
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:48%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:63%"></div>
+            <div class="bar" style="height:82%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:95%"></div>
+          </div>
+
+          <p class="small" style="margin-top:20px">
+            SQL Server · Power BI · Python · DAX
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STATS -->
+
+    <div class="stats">
+      <div class="container stats-grid">
+
+        <div class="stat">
+          <strong>02</strong>
+          <span>Dự án phân tích chuyên sâu</span>
+        </div>
+
+        <div class="stat">
+          <strong>1,7M+</strong>
+          <span>Dòng dữ liệu được phân tích</span>
+        </div>
+
+        <div class="stat">
+          <strong>SQL + BI</strong>
+          <span>Công cụ triển khai dự án</span>
+        </div>
+
+        <div class="stat">
+          <strong>100%</strong>
+          <span>Tập trung vào actionable insights</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ABOUT ME -->
+
+    <section id="about" class="section">
+      <div class="container">
+
+        <div class="eyebrow">ABOUT ME</div>
+        <h2 class="section-title">Một chút về mình</h2>
+
+        <p class="section-description">
+          Mình đang xây dựng con đường nghề nghiệp trong
+          lĩnh vực phân tích dữ liệu, đặc biệt là
+          Business Analytics và Operations Analytics.
+        </p>
+
+        <div class="about-grid">
+
+          <div class="card about-text">
+
+            <p>
+              Mình là <strong>Khuất Đình Minh</strong>,
+              hiện đang sinh sống và làm việc tại Hà Nội.
+              Mình định hướng phát triển sự nghiệp ở vị trí
+              <strong>Data Analyst</strong>, với mong muốn
+              sử dụng dữ liệu để giải quyết các bài toán
+              kinh doanh và vận hành.
+            </p>
+
+            <p>
+              Dù chưa đảm nhiệm vị trí Data Analyst chính thức,
+              mình đã chủ động xây dựng các dự án phân tích
+              nhằm thực hành toàn bộ quy trình từ
+              <strong>làm sạch dữ liệu, xây dựng mô hình,
+              thiết kế dashboard đến phân tích nguyên nhân
+              và đề xuất giải pháp.</strong>
+            </p>
+
+            <p>
+              Thông qua các dự án về thương mại điện tử
+              và chuỗi cửa hàng F&B, mình đã thực hành
+              SQL Server, Power BI và DAX để phân tích
+              hiệu quả vận hành, tăng trưởng và lợi nhuận.
+              Bên cạnh đó, mình đang tiếp tục phát triển
+              kỹ năng Python phục vụ phân tích dữ liệu.
+            </p>
+
+            <p>
+              Mục tiêu của mình không chỉ là trực quan hóa
+              dữ liệu, mà còn là
+              <strong>tìm ra insight có thể chuyển thành
+              hành động cụ thể và đo lường được hiệu quả.</strong>
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <div class="fact">
+              <span class="fact-label">Họ và tên</span>
+              <span class="fact-value">Khuất Đình Minh</span>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Ngày sinh</span>
+              <span class="fact-value">29/01/2001</span>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Địa điểm</span>
+              <span class="fact-value">Hà Nội, Việt Nam</span>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Định hướng</span>
+              <span class="fact-value">
+                Data Analyst</span>
+            </div>
+
+            <div class="fact">
+              <span class="fact-label">Chuyên môn quan tâm</span>
+              <span class="fact-value">
+                Business & Operations Analytics
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+
+    <section id="skills" class="section" style="padding-top:10px">
+      <div class="container">
+
+        <div class="eyebrow">CORE TOOLKIT</div>
+        <h2 class="section-title">Công cụ & năng lực</h2>
+
+        <p class="section-description">
+          Những công cụ và kỹ năng mình đang sử dụng,
+          thực hành và phát triển trong quá trình
+          học tập và thực hiện dự án.
+        </p>
+
+        <div class="skills-grid">
+
+          <div class="skill-card">
+            <div class="skill-icon">SQL</div>
+            <h3>SQL Server</h3>
+            <p>
+              Truy vấn, làm sạch và kết hợp dữ liệu
+              từ nhiều bảng để chuẩn bị dữ liệu
+              phục vụ phân tích.
+            </p>
+            <div class="tags">
+              <span class="tag">JOIN</span>
+              <span class="tag">CTE</span>
+              <span class="tag">SQL Views</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">Window Functions</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">BI</div>
+            <h3>Power BI & DAX</h3>
+            <p>
+              Xây dựng mô hình dữ liệu, thiết kế
+              dashboard và phát triển các chỉ số
+              phục vụ phân tích hiệu quả kinh doanh.
+            </p>
+            <div class="tags">
+              <span class="tag">Power Query</span>
+              <span class="tag">Star Schema</span>
+              <span class="tag">DAX Measures</span>
+              <span class="tag">Dashboard</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">Py</div>
+            <h3>Python</h3>
+            <p>
+              Sử dụng Python để hỗ trợ xử lý,
+              khám phá và phân tích dữ liệu.
+              Tiếp tục phát triển kỹ năng thông qua
+              các bài tập và dự án thực hành.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">Data Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">↗</div>
+            <h3>Business Analysis</h3>
+            <p>
+              Xác định vấn đề kinh doanh, phân tích
+              KPI, tìm nguyên nhân gốc rễ và đề xuất
+              các giải pháp có thể đo lường hiệu quả.
+            </p>
+            <div class="tags">
+              <span class="tag">KPI Analysis</span>
+              <span class="tag">Root Cause</span>
+              <span class="tag">Data Storytelling</span>
+              <span class="tag">Recommendations</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="section projects-section">
+      <div class="container">
+
+        <div class="eyebrow">SELECTED PROJECTS</div>
+        <h2 class="section-title">Dự án nổi bật</h2>
+
+        <p class="section-description">
+          Hai dự án phân tích dữ liệu độc lập, tập trung
+          vào việc xác định vấn đề, tìm nguyên nhân
+          và đưa ra giải pháp cải thiện hiệu quả kinh doanh.
+        </p>
+
+        <!-- SHOPEE -->
+
+        <article class="project-card">
+
+          <div class="project-visual">
+
+            <div class="project-number">
+              CASE STUDY / 01
+            </div>
+
+            <div>
+              <h3>
+                Shopee<br>
+                Delivery<br>
+                Analytics
+              </h3>
+
+              <p>
+                Phân tích hiệu quả vận hành giao hàng
+                và xác định các điểm nghẽn.
+              </p>
+            </div>
+
+            <div class="project-number">
+              JAN – JUN 2026
+            </div>
+
+          </div>
+
+          <div class="project-body">
+
+            <div class="project-type">
+              OPERATIONS ANALYTICS · SQL · POWER BI
+            </div>
+
+            <h3>Phân tích hiệu quả giao hàng Shopee</h3>
+
+            <p>
+              Phân tích khoảng <strong>300.000 dòng dữ liệu</strong>
+              từ 9 bảng, gồm 50.000 đơn hàng của 150 seller,
+              nhằm tìm nguyên nhân khiến tỷ lệ giao trễ
+              gia tăng trong Q2/2026.
+            </p>
+
+            <p>
+              Sử dụng 11 SQL Views để làm sạch dữ liệu,
+              xây dựng mô hình dữ liệu trong Power BI
+              và phát triển các measure DAX cho tỷ lệ
+              giao trễ, P90 thời gian xử lý, vận chuyển
+              và đơn trễ/hủy vượt mức bình thường.
+            </p>
+
+            <h4>Key Findings</h4>
+
+            <ul>
+              <li>
+                Số đơn tăng <strong>13%</strong>,
+                nhưng tỷ lệ giao trễ tăng từ
+                <strong>5,7% lên 15,1%</strong>.
+              </li>
+
+              <li>
+                Nhóm <strong>18 seller</strong> có
+                P90 xử lý lên tới <strong>74,5 giờ</strong>
+                và tỷ lệ giao trễ <strong>46,7%</strong>.
+              </li>
+
+              <li>
+                Carrier B trên các tuyến đến Bình Dương,
+                Cần Thơ có tỷ lệ trễ khoảng
+                <strong>37%</strong>,
+                P90 vận chuyển 150–170 giờ.
+              </li>
+            </ul>
+
+            <h4>Recommendations</h4>
+
+            <ul>
+              <li>
+                Ưu tiên 10 seller có hiệu quả xử lý thấp,
+                áp dụng yêu cầu bàn giao trong 24 giờ.
+              </li>
+
+              <li>
+                Điều chỉnh hãng vận chuyển hoặc SLA
+                trên 3 tuyến có tỷ lệ giao trễ cao.
+              </li>
+
+              <li>
+                Điều chỉnh thời gian cam kết giao
+                nội thành và đo lường hiệu quả
+                bằng nhóm đối chứng trong 4–6 tuần.
+              </li>
+            </ul>
+
+            <div class="project-buttons">
+
+              <a
+                class="button"
+                href="https://app.powerbi.com/view?r=eyJrIjoiMzkzZGYxNWEtMzE2Mi00OGE3LWFhMTMtNjY2OGRlNWFhZmRjIiwidCI6IjVlOGIzMjY5LTc2Y2EtNDU3Yy04NDdmLTQ0NGUzZGI5ODZhNyIsImMiOjl9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Xem Power BI ↗
+              </a>
+
+              <a
+                class="button button-outline"
+                href="https://drive.google.com/file/d/1ymD_2QH5U5N6YZHhiD9IXlhrnmLTrv3x/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Xem slide phân tích ↗
+              </a>
+
+            </div>
+
+          </div>
+        </article>
+
+        <!-- HIGHLANDS -->
+
+        <article class="project-card">
+
+          <div class="project-visual coffee">
+
+            <div class="project-number">
+              CASE STUDY / 02
+            </div>
+
+            <div>
+              <h3>
+                Highlands<br>
+                Coffee<br>
+                Analytics
+              </h3>
+
+              <p>
+                Phân tích doanh thu, lợi nhuận
+                và hiệu quả vận hành chuỗi cửa hàng F&B.
+              </p>
+            </div>
+
+            <div class="project-number">
+              H1 2025 VS H1 2026
+            </div>
+
+          </div>
+
+          <div class="project-body">
+
+            <div class="project-type">
+              RETAIL ANALYTICS · SQL · POWER BI
+            </div>
+
+            <h3>
+              Phân tích hiệu quả kinh doanh Highlands Coffee
+            </h3>
+
+            <p>
+              Phân tích <strong>1,46 triệu dòng dữ liệu</strong>
+              từ 10 bảng của chuỗi 12 cửa hàng,
+              so sánh H1/2026 với H1/2025 nhằm xác định
+              các yếu tố ảnh hưởng đến tăng trưởng
+              và lợi nhuận.
+            </p>
+
+            <p>
+              Xây dựng 10 SQL Views, mô hình dữ liệu
+              gồm 4 bảng fact và các measure DAX
+              cho tăng trưởng LFL, phân rã tăng trưởng,
+              lợi nhuận theo kênh, chi phí nguyên liệu
+              và hao hụt.
+            </p>
+
+            <h4>Key Findings</h4>
+
+            <ul>
+              <li>
+                Kênh app mang lại
+                <strong>63% số đơn tăng thêm</strong>,
+                nhưng chỉ đóng góp
+                <strong>13% lợi nhuận tăng thêm</strong>.
+              </li>
+
+              <li>
+                Tiền thuê và phí app giải thích
+                <strong>9,9/11,2 điểm phần trăm</strong>
+                chênh lệch biên lợi nhuận
+                giữa cửa hàng yếu và mạnh.
+              </li>
+
+              <li>
+                Giá sữa tươi tăng
+                <strong>17,7%</strong>,
+                khiến biên lợi nhuận sản phẩm
+                giảm <strong>1,8 điểm phần trăm</strong>.
+              </li>
+            </ul>
+
+            <h4>Recommendations</h4>
+
+            <ul>
+              <li>
+                Giảm phụ thuộc vào khuyến mãi
+                trên kênh giao hàng qua app.
+              </li>
+
+              <li>
+                Tăng hiệu quả khai thác mặt bằng
+                tại các cửa hàng mall và office.
+              </li>
+
+              <li>
+                Điều chỉnh giá đồ uống sử dụng sữa
+                và kiểm soát hao hụt nguyên liệu.
+              </li>
+            </ul>
+
+            <div class="project-buttons">
+
+              <a
+                class="button"
+                href="https://app.powerbi.com/view?r=eyJrIjoiYWZjMmJiYjMtMjU5ZS00ZWQ0LWExZjYtYWIwMWRmNWM3NzVhIiwidCI6IjVlOGIzMjY5LTc2Y2EtNDU3Yy04NDdmLTQ0NGUzZGI5ODZhNyIsImMiOjl9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Xem Power BI ↗
+              </a>
+
+              <a
+                class="button button-outline"
+                href="https://drive.google.com/file/d/1V7vYmkDbQfzKMTgkxV5JnX8j8C7hzbDT/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Xem slide phân tích ↗
+              </a>
+
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+
+    <section class="section">
+      <div class="container">
+
+        <div class="eyebrow">HOW I WORK</div>
+
+        <h2 class="section-title">
+          Cách mình tiếp cận dữ liệu
+        </h2>
+
+        <p class="section-description">
+          Mình ưu tiên xác định đúng bài toán kinh doanh
+          trước khi bắt đầu xử lý và trực quan hóa dữ liệu.
+        </p>
+
+        <div class="workflow">
+
+          <div class="workflow-item">
+            <span>01 / DEFINE</span>
+            <h3>Xác định bài toán</h3>
+            <p>
+              Làm rõ mục tiêu, KPI và câu hỏi
+              kinh doanh cần giải quyết.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <span>02 / PREPARE</span>
+            <h3>Chuẩn bị dữ liệu</h3>
+            <p>
+              Làm sạch dữ liệu, kiểm tra tính
+              nhất quán và xây dựng mô hình.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <span>03 / ANALYZE</span>
+            <h3>Phân tích nguyên nhân</h3>
+            <p>
+              Phân nhóm, so sánh KPI
+              và xác định các yếu tố tác động.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <span>04 / RECOMMEND</span>
+            <h3>Đề xuất giải pháp</h3>
+            <p>
+              Ưu tiên hành động và xây dựng
+              KPI đo lường hiệu quả.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="contact-box">
+
+          <div>
+            <div class="eyebrow" style="color:#c7e5be">
+              LET'S CONNECT
+            </div>
+
+            <h2>Cùng trao đổi về dữ liệu.</h2>
+
+            <p>
+              Mình đang tìm kiếm cơ hội phát triển
+              ở vị trí Data Analyst.
+              Rất vui được kết nối với các nhà tuyển dụng
+              và đội ngũ phân tích dữ liệu.
+            </p>
+
+            <p>
+              <strong>Email:</strong>
+              <a
+                class="contact-email"
+                href="mailto:minhkhuat2901@gmail.com"
+              >
+                minhkhuat2901@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <a
+            class="button contact-button"
+            href="mailto:minhkhuat2901@gmail.com?subject=Co%20hoi%20Data%20Analyst"
+          >
+            Gửi email ↗
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="container">
+    <span>
+      © <span id="year">2026</span> Khuất Đình Minh.
+      All rights reserved.
+    </span>
+
+    <span>
+      Data → Insights → Better Decisions
+    </span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
